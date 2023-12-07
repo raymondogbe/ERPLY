@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your source code Git
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                // Build the Docker image from Dockerfile
+              sh 'docker build -t httpd:latest .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                // Run the Docker container from the built image
+              sh "docker run -dit -p 80:80 --name erply_web httpd:latest"
+                }
+            }
+        
+        stage('Deploy app to Production Container') {
+            steps {
+                //"Copy the index.html to docker container"
+              sh "docker cp /var/lib/jenkins/workspace/test_main/index.html notbad_web:/usr/local/apache2/htdocs/"
+                }
+            }
+        
+    }
+
+}
