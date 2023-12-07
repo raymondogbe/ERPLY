@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Build the Docker image from Dockerfile
-              sh 'docker build -t ERPLY .'
+              sh 'docker build -t erply .'
             }
         }
 
