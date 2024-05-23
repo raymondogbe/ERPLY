@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodeapp-service
+  name: erplyapp-service
 spec:
   selector:
-    app: nodeapp 
+    app: erplyapp 
   type: LoadBalancer
   ports:
   - protocol: TCP
