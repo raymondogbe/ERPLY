@@ -4,12 +4,12 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('raydebillion')
   }
   stages {
-    stage('Checkout') {
-            steps {
-                // Checkout your source code Git
-                checkout scm
-            }
-        }
+    stage('gitclone') {
+
+			steps {
+				git 'https://github.com/raymondogbe/Landing-Page-React.git'
+			}
+		}
     stage('Build Docker Image') {
             steps {
                 // Build the Docker image from Dockerfile
