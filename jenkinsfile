@@ -13,13 +13,13 @@ pipeline {
     stage('Build Docker Image') {
             steps {
                 // Build the Docker image from Dockerfile
-              sh 'docker build -t  ERPLY .'
+              sh 'docker build -t  erplyapp .'
             }
         }
     stage('Run Docker Container') {
             steps {
                 // Run the Docker container from the built image
-              sh "docker run -dit -p 80:80 --name erply_app ERPLY"
+              sh "docker run -dit -p 80:80 --name erply_app erplyapp"
                 }
             }
     stage('Docker Login') {
@@ -29,12 +29,12 @@ pipeline {
     }
     stage('Docker Tag Image') {
       steps {
-        sh 'docker tag myreact_app4 raydebillion/erply_app:latest'
+        sh 'docker tag myreact_app4 raydebillion/erplyapp:latest'
       }
     }
     stage('Docker Push') {
       steps {
-        sh 'docker push raydebillion/erply_app:latest'
+        sh 'docker push raydebillion/erplyapp:latest'
       }
     }
   }
