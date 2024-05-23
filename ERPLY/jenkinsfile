@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Build the Docker image from Dockerfile
-              sh 'docker build -t erply .'
+              sh 'docker build -t  ERPLY .'
             }
         }
 
@@ -23,12 +23,12 @@ pipeline {
                 }
             }
         
-        stage('Deploy app to Production Container') {
-            steps {
+        //stage('Deploy app to Production Container') {
+            //steps {
                 //"Copy the landing page to docker container"
-              sh "docker cp /var/lib/jenkins/workspace/test_main/index.html notbad_web:/usr/local/apache2/htdocs/"
-                }
-            }
+              //sh "docker cp /var/lib/jenkins/workspace/test_main/index.html notbad_web:/usr/local/apache2/htdocs/"
+                //}
+            //}
         
     }
 
