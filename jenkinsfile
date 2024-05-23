@@ -1,15 +1,15 @@
 pipeline {
   agent { label 'linux' }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('raydebillion')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
     stage('gitclone') {
 
-			steps {
-				git 'https://github.com/raymondogbe/Landing-Page-React.git'
-			}
+	steps {
+		git 'https://github.com/raymondogbe/Landing-Page-React.git'
 		}
+	}
     stage('Build Docker Image') {
             steps {
                 // Build the Docker image from Dockerfile
