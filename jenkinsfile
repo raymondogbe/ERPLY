@@ -29,7 +29,7 @@ pipeline {
     }
     stage('Docker Tag Image') {
       steps {
-        sh 'docker tag myreact_app4 raydebillion/erplyapp:latest'
+        sh 'docker tag erplyapp raydebillion/erplyapp:latest'
       }
     }
     stage('Docker Push') {
