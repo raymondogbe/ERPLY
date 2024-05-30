@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'linux' }
+  agent any
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
@@ -19,7 +19,7 @@ pipeline {
     stage('Run Docker Container') {
             steps {
                 // Run the Docker container from the built image
-              sh "docker run -dit -p 80:80 --name erply_app erplyapp"
+              sh "docker run -dit -p 80:80 --name erply_app erplyapp:${BUILD_NUMBER}"
                 }
             }
     stage('Docker Login') {
@@ -29,12 +29,12 @@ pipeline {
     }
     stage('Docker Tag Image') {
       steps {
-        sh 'docker tag erplyapp raydebillion/erplyapp:latest'
+        sh 'docker tag erplyapp raydebillion/erplyapp:${BUILD_NUMBER}'
       }
     }
     stage('Docker Push') {
       steps {
-        sh 'docker push raydebillion/erplyapp:latest'
+        sh 'docker push raydebillion/erplyapp:${BUILD_NUMBER}'
       }
     }
   }
