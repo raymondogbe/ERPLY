@@ -1,5 +1,5 @@
 # Use the official Node.js image as a base
-FROM node:14 as build
+FROM node:14 as builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy the built app from the previous stage
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose port 80 to the outside world (default for HTTP)
 EXPOSE 80
