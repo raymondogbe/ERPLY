@@ -13,7 +13,7 @@ pipeline {
     stage('Build Docker Image') {
             steps {
                 // Build the Docker image from Dockerfile
-              sh 'docker build -t  erplyapp .'
+              sh "docker build -t  erplyapp . "
             }
         }
     stage('Run Docker Container') {
@@ -24,23 +24,23 @@ pipeline {
             }
     stage('Docker Login') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
       }
     }
     stage('Docker Tag Image') {
       steps {
-        sh 'docker tag erplyapp raydebillion/erplyapp:${BUILD_NUMBER}'
+        sh "docker tag erplyapp raydebillion/erplyapp:${BUILD_NUMBER}"
       }
     }
     stage('Docker Push') {
       steps {
-        sh 'docker push raydebillion/erplyapp:${BUILD_NUMBER}'
+        sh "docker push raydebillion/erplyapp:${BUILD_NUMBER}"
       }
     }
   }
   post {
     always {
-      sh 'docker logout'
+      sh "docker logout"
     }
   }
 }
