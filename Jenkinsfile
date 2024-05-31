@@ -7,7 +7,7 @@ pipeline {
     stage('gitclone') {
 
 	steps {
-		git 'https://github.com/raymondogbe/Landing-Page-React.git'
+		git clone 'https://github.com/raymondogbe/Landing-Page-React.git'
 		}
 	}
     stage('Build Docker Image') {
