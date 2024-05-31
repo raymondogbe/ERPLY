@@ -37,10 +37,17 @@ pipeline {
         sh "docker push raydebillion/erplyapp:${BUILD_NUMBER}"
       }
     }
+   stage('Deployment') {
+      steps {
+        echo 'Deployinging....'
+              sh ' kubectl delete -f react-test.yaml'
+              sh ' kubectl apply -f react-test.yaml'
+            }
+        }
   }
-  post {
-    always {
-      sh "docker logout"
-    }
-  }
+  //post {
+    //always {
+      //sh "docker logout"
+    //}
+  //}
 }
